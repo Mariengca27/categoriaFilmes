@@ -14,11 +14,11 @@ public class FilmeController
     [HttpPost]
     public void AdicionaFilmes([FromBody] Filme filme) {
 
-        if (!String.IsNullOrEmpty(filme.Titulo) && (!string.IsNullOrEmpty(filme.Genero)) && (filme.Duracao>=40)){ 
+        
         filmes.Add(filme);
         Console.WriteLine(filme.Duracao);
         Console.WriteLine(filme.Titulo);  
-        }
+        
 
     }
 
