@@ -26,7 +26,7 @@ public class FilmeController
     [HttpGet]
     public IEnumerable<Filme>  RecuperarFilmes() {
 
-        return filmes;
+        return filmes.Skip(2).Take(3);
     }
 
 
