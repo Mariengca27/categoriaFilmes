@@ -1,5 +1,7 @@
-﻿using FilmesAPI.Models;
+﻿using System.Net;
+using FilmesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace FilmesAPI.Controllers;
 
@@ -7,7 +9,7 @@ namespace FilmesAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class FilmeController
+public class FilmeController : ControllerBase 
 {
     private static List<Filme> filmes = new List<Filme>();
     private static int id = 0;
@@ -19,8 +21,7 @@ public class FilmeController
         filmes.Add(filme);
         Console.WriteLine(filme.Duracao);
         Console.WriteLine(filme.Titulo);  
-        
-
+          
     }
 
     [HttpGet]
@@ -29,14 +30,15 @@ public class FilmeController
         return filmes.Skip(skip).Take(take);
     }
 
+   
 
     [HttpGet("{id}")]
-    public Filme? RecuperaFilmeId(int id) {
+    public IActionResult RecuperaFilmeId(int id) {
 
-        return filmes.FirstOrDefault(filme => filme.id == id);
-    
+       var movie = filmes.FirstOrDefault(movie => movie.id == id);
+
+        if (movie == null) { return NotFound(); }
+        return Ok(movie);
     }
-
-
 
 }
