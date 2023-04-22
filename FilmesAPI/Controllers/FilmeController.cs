@@ -15,13 +15,13 @@ public class FilmeController : ControllerBase
     private static int id = 0;
 
     [HttpPost]
-    public void AdicionaFilmes([FromBody] Filme filme) {
+    public IActionResult AdicionaFilmes([FromBody] Filme filme) {
 
         filme.id = id++;
         filmes.Add(filme);
-        Console.WriteLine(filme.Duracao);
-        Console.WriteLine(filme.Titulo);  
-          
+        return CreatedAtAction(nameof(RecuperaFilmeId), new {
+            id= filme.id}, filme);
+               
     }
 
     [HttpGet]
