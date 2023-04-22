@@ -22,5 +22,12 @@ public class FilmeController
 
     }
 
+    [HttpGet]
+    public IEnumerable<Filme>  RecuperarFilmes() {
+
+        return filmes;
+    }
+
+
 
 }
