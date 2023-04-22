@@ -5,6 +5,7 @@ namespace FilmesAPI.Models;
 
 public class Filme
 {
+    public int id { get; set; }
 
     [Required(ErrorMessage ="Colocar o Título")]
     [StringLength(30, ErrorMessage ="O nome do filmes deve conter no máximo 30 caracteres")]
