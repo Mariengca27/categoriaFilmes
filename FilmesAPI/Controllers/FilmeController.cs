@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using FilmesAPI.Data;
 using FilmesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -11,14 +12,18 @@ namespace FilmesAPI.Controllers;
 [Route("[controller]")]
 public class FilmeController : ControllerBase 
 {
-    private static List<Filme> filmes = new List<Filme>();
-    private static int id = 0;
+    private FilmeContext _context;
+
+    public FilmeController(FilmeContext context)
+    {
+        _context = context;
+    }
 
     [HttpPost]
     public IActionResult AdicionaFilmes([FromBody] Filme filme) {
 
-        filme.id = id++;
-        filmes.Add(filme);
+        _context.Filmes.Add(filme);
+        _context.SaveChanges();
         return CreatedAtAction(nameof(RecuperaFilmeId), new {
             id= filme.id}, filme);
                
@@ -27,7 +32,7 @@ public class FilmeController : ControllerBase
     [HttpGet]
     public IEnumerable<Filme>  RecuperarFilmes( [FromQuery]int skip=0,[FromQuery] int take=50 ) {
 
-        return filmes.Skip(skip).Take(take);
+        return _context.Filmes.Skip(skip).Take(take);
     }
 
    
@@ -35,7 +40,7 @@ public class FilmeController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult RecuperaFilmeId(int id) {
 
-       var movie = filmes.FirstOrDefault(movie => movie.id == id);
+       var movie = _context.Filmes.FirstOrDefault(movie => movie.id == id);
 
         if (movie == null) { return NotFound(); }
         return Ok(movie);
