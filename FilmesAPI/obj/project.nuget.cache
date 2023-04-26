@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "6Hg8A/Jm1RJxVo+zrgLYV5SKsBkcszOAf8/ZVPL51s1fZYTpWHus+o/HPHEHeXuTWXIuQ9rROeFe7Mz1LVTliQ==",
+  "dgSpecHash": "VEzzu7EvOkLVuMT9ErOTReDAe5z4KYq1q35zj6hKEwdWVQc7SWZKPotPoB8obICYACVN2Ng4Bxp5SdvUQlrkmQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\marim\\source\\repos\\FilmesAPI\\FilmesAPI\\FilmesAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\marim\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\marim\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\marim\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\marim\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\marim\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.5\\microsoft.entityframeworkcore.7.0.5.nupkg.sha512",
     "C:\\Users\\marim\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.5\\microsoft.entityframeworkcore.abstractions.7.0.5.nupkg.sha512",
     "C:\\Users\\marim\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.5\\microsoft.entityframeworkcore.analyzers.7.0.5.nupkg.sha512",

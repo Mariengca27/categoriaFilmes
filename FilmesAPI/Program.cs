@@ -3,11 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Conexão com a string do AppSettings sendo envocada
 var conn = (builder.Configuration
     .GetConnectionString("FilmeConnection"));
 
 builder.Services.AddDbContext<FilmeContext>(opts => opts.UseMySql(conn, ServerVersion.AutoDetect(conn)));
 
+//Adicionando o AutoMapper responsável pelo mapeamento automático:
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Add services to the container.
 
