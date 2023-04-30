@@ -12,7 +12,7 @@ namespace FilmesAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class FilmeController : ControllerBase 
+public class FilmeController : ControllerBase
 {
     private FilmeContext _context;
     private IMapper _mapper;
@@ -26,31 +26,44 @@ public class FilmeController : ControllerBase
     [HttpPost]
     public IActionResult AdicionaFilmes([FromBody] CreateFilmeDto filmeDto) {
 
-        Filme filme = _mapper.Map<Filme>(filmeDto); 
+        Filme filme = _mapper.Map<Filme>(filmeDto);
 
 
         _context.Filmes.Add(filme);
         _context.SaveChanges();
         return CreatedAtAction(nameof(RecuperaFilmeId), new {
-            id= filme.id}, filme);
-               
+            id = filme.id }, filme);
+
     }
 
     [HttpGet]
-    public IEnumerable<Filme>  RecuperarFilmes( [FromQuery]int skip=0,[FromQuery] int take=50 ) {
- 
+    public IEnumerable<Filme> RecuperarFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50) {
+
         return _context.Filmes.Skip(skip).Take(take);
     }
 
-   
+
 
     [HttpGet("{id}")]
     public IActionResult RecuperaFilmeId(int id) {
 
-       var movie = _context.Filmes.FirstOrDefault(movie => movie.id == id);
+        var movie = _context.Filmes.FirstOrDefault(movie => movie.id == id);
 
         if (movie == null) { return NotFound(); }
         return Ok(movie);
     }
+
+    [HttpPut("{id}")]
+    public IActionResult AtualizaFilme(int id, [FromBody]UpdateFilmeDto filmeDto) {
+    
+        var filme = _context.Filmes.FirstOrDefault(filme => filme.id == id);
+        if(filme == null) return NotFound();
+        _mapper.Map(filmeDto, filme);
+        _context.SaveChanges();
+        return NoContent();
+        
+
+    }
+
 
 }
